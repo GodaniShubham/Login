@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Account - Professional Auth Portal</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+</head>
+<body class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 overflow-x-hidden">
+<div class="background-animation">
+        <!-- Geometric Shapes -->
+        <div class="geometric-shape shape-1"></div>
+        <div class="geometric-shape shape-2"></div>
+        <div class="geometric-shape shape-3"></div>
+        <div class="geometric-shape shape-4"></div>
+        <div class="geometric-shape shape-5"></div>
+        
+        <!-- Floating Orbs -->
+        <div class="floating-orb orb-1"></div>
+        <div class="floating-orb orb-2"></div>
+        <div class="floating-orb orb-3"></div>
+        
+        <!-- Gradient Waves -->
+        <div class="gradient-wave wave-1"></div>
+        <div class="gradient-wave wave-2"></div>
+        <div class="gradient-wave wave-3"></div>
+        
+        <!-- Particle System -->
+        <div class="particles-container"></div>
+        
+        <!-- Grid Pattern -->
+        <div class="grid-pattern"></div>
+    </div>
+    <!-- Main Content -->
+    <main class="flex-1 flex items-center justify-center px-4 py-12 relative">
+        <div class="w-full max-w-2xl">
+            <div class="auth-card-enhanced animate-slide-up">
+                <div class="text-center mb-8">
+                    <h1 class="text-3xl font-bold">Create your account</h1>
+                    <p class="text-slate-600 text-lg">Join thousands of professionals using our platform</p>
+                </div>
+
+                <!-- Django Registration Form -->
+                <form method="post" class="space-y-6" novalidate>
+                    {% csrf_token %}
+
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="bg-red-100 text-red-600 p-2 rounded">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- First Name -->
+                        <div>
+                            <label for="first_name" class="block text-sm font-medium text-slate-700">First Name *</label>
+                            <input type="text" id="first_name" name="first_name" required class="auth-input-enhanced w-full" value="{{ request.POST.first_name }}">
+                        </div>
+
+                        <!-- Last Name -->
+                        <div>
+                            <label for="last_name" class="block text-sm font-medium text-slate-700">Last Name *</label>
+                            <input type="text" id="last_name" name="last_name" required class="auth-input-enhanced w-full" value="{{ request.POST.last_name }}">
+                        </div>
+
+                        <!-- Email -->
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-slate-700">Email *</label>
+                            <input type="email" id="email" name="email" required class="auth-input-enhanced w-full" value="{{ request.POST.email }}">
+                        </div>
+
+                        <!-- Username -->
+                        <div>
+                            <label for="username" class="block text-sm font-medium text-slate-700">Username *</label>
+                            <input type="text" id="username" name="username" required class="auth-input-enhanced w-full" value="{{ request.POST.username }}">
+                        </div>
+
+                        <!-- Password -->
+                        <div>
+                            <label for="password" class="block text-sm font-medium text-slate-700">Password *</label>
+                            <input type="password" id="password" name="password" required class="auth-input-enhanced w-full">
+                        </div>
+
+                        <!-- Confirm Password -->
+                        <div>
+                            <label for="confirm_password" class="block text-sm font-medium text-slate-700">Confirm Password *</label>
+                            <input type="password" id="confirm_password" name="confirm_password" required class="auth-input-enhanced w-full">
+                        </div>
+                    </div>
+
+                    <!-- Terms -->
+                    <div class="flex items-start mt-4">
+                        <input type="checkbox" name="terms" required class="mr-2">
+                        <label class="text-sm">I agree to the <a href="#" class="auth-link-enhanced">Terms</a> and <a href="#" class="auth-link-enhanced">Privacy Policy</a></label>
+                    </div>
+
+                    <!-- Submit -->
+                    <button type="submit" class="auth-button-enhanced w-full mt-6">Create Account</button>
+
+                    <!-- Login Link -->
+                    <p class="text-sm text-center mt-4 text-slate-600">
+                        Already have an account? <a href="{% url 'login' %}" class="auth-link-enhanced">Sign in</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
